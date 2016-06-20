@@ -13,13 +13,13 @@ The Map is infinitly large and psuedo randomly seeded.
 
 Recomended seeds: 7856
 
-VERSION or DATE: 1.1
+VERSION or DATE: 2.1
 
 HOW TO START THIS PROJECT:
 run World.class in java, 
 Type either boy/girl in command prompt.
 
-AUTHORS: Max Mesirow
+AUTHORS: Max Mesirow, Maya Marks
 
 USER INSTRUCTIONS:
 -to move around use arrow keys
