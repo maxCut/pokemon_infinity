@@ -6,7 +6,12 @@ all he/she needs to know. The comments should usually include at least:
 
 PROJECT TITLE: Pokemon Code Day
 
-PURPOSE OF PROJECT: To Create an infinitly large Pokemon world where new pokemon are easily implimentable
+PURPOSE OF PROJECT: 
+To Create an infinitly large Pokemon world where new pokemon are easily implimentable
+Map is generated using procedural level generation. 
+The Map is infinitly large and psuedo randomly seeded.
+
+Recomended seeds: 7856
 
 VERSION or DATE: 1.1
 
