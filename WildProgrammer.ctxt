@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=n\ bP\ a\ frontFN\ backFN\ t\ m1\ m2\ m3\ m4
+comment0.target=WildProgrammer(java.lang.String,\ int,\ int,\ java.lang.String,\ java.lang.String,\ Type,\ Move,\ Move,\ Move,\ Move)
+comment1.params=
+comment1.target=java.lang.String\ getName()
+comment10.params=
+comment10.target=Move\ m4()
+comment2.params=
+comment2.target=java.awt.image.BufferedImage\ getFront()
+comment3.params=
+comment3.target=java.awt.image.BufferedImage\ getBack()
+comment4.params=
+comment4.target=int\ getBrainPower()
+comment5.params=
+comment5.target=int\ getAlertness()
+comment6.params=
+comment6.target=Type\ getType()
+comment7.params=
+comment7.target=Move\ m1()
+comment8.params=
+comment8.target=Move\ m2()
+comment9.params=
+comment9.target=Move\ m3()
+numComments=11

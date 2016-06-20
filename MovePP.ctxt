@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=m
+comment0.target=MovePP(Move)
+comment1.params=
+comment1.target=boolean\ canUse()
+comment2.params=
+comment2.target=void\ use()
+comment3.params=
+comment3.target=void\ fullHeal()
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment5.params=
+comment5.target=double\ getDamage()
+comment6.params=
+comment6.target=int\ getHeal()
+comment7.params=
+comment7.target=int\ getMaxPP()
+comment8.params=
+comment8.target=int\ getPP()
+numComments=9

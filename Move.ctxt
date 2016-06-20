@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=p\ d\ h\ n
+comment0.target=Move(int,\ double,\ int,\ java.lang.String)
+comment1.params=
+comment1.target=java.lang.String\ getName()
+comment2.params=
+comment2.target=double\ getDamage()
+comment3.params=
+comment3.target=int\ getHeal()
+comment4.params=
+comment4.target=int\ getPP()
+numComments=5
