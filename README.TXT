@@ -19,7 +19,8 @@ HOW TO START THIS PROJECT:
 run World.class in java, 
 Type either boy/girl in command prompt.
 
-AUTHORS: Max Mesirow, Maya Marks
+1.0 AUTHORS: Max Mesirow, Maya Marks
+2.0 AUTHORS: Max Mesirow
 
 USER INSTRUCTIONS:
 -to move around use arrow keys
@@ -33,3 +34,6 @@ USER INSTRUCTIONS:
 
 Known Buggs:
 - 1 in 30 chance of spawning inside a tree, restricting all movement.
+- b button allows user to skip oponents turn
+- walking left may create white space on the first column
+- not all items are implemented
