@@ -149,7 +149,7 @@ public class World extends JComponent
                     if(key == KeyEvent.VK_B)
                     {
 
-                        if(battleEmulator.getState()&&battleEmulator.getCurrentMenu()!=4)
+                        if(battleEmulator.getState()&&battleEmulator.getCurrentMenu()!=4) //if its not the opponents turn and you are in a battle it will derefrence the state
                         {
                             battleEmulator.deSelected();   
                         }
@@ -161,22 +161,10 @@ public class World extends JComponent
                 public void keyReleased(KeyEvent e)
                 {
                     Integer key = e.getKeyCode();
-                    if(key == KeyEvent.VK_RIGHT)
-                    {
-
-                    }
-                    if(key == KeyEvent.VK_LEFT)
-                    {
-
-                    }
-                    if(key == KeyEvent.VK_UP)
-                    {
-
-                    }
-                    if(key == KeyEvent.VK_DOWN)
-                    {
-
-                    }
+                    if(key == KeyEvent.VK_RIGHT){}//right now these do nothing but have potential for key released events in future
+                    if(key == KeyEvent.VK_LEFT){}
+                    if(key == KeyEvent.VK_UP){}
+                    if(key == KeyEvent.VK_DOWN){}
                 }
 
             }); 
@@ -185,7 +173,7 @@ public class World extends JComponent
         {
             try
             {
-                Thread.sleep(10);
+                Thread.sleep(10);//gives time aspect so that it doesnt repaint every second
             } 
             catch(Exception e)
             {
@@ -195,7 +183,7 @@ public class World extends JComponent
         }
     }
 
-    public static void runGameTextIntro()
+    public static void runGameTextIntro()//run in the beggining of the game
     {
 
         System.out.println("Are you a boy or a girl?");
@@ -213,9 +201,7 @@ public class World extends JComponent
         {
             System.out.println("invalid statement");
             System.exit(1);
-        }
-        
- 
+        } 
     }
     
     public static void loadPictures()
@@ -243,8 +229,11 @@ public class World extends JComponent
     {
         final int tileWidth = 40;
         final int tileHeight = 40;
-        final int xShift = 200;//these shift the tiles onto the screen, because java is weird and 0,0 is not the top left origin
+        final int xShift = 200;//these shift the tiles relative to the player.
         final int yShift = 200;
+
+        final int startBorderX = -40; //the start border for the x axis of where to start drawing tiles
+        final int startBorderY = 0; //the start border for the x axis of where to start drawing tiles
 
         if(!battleEmulator.getState())
         {
@@ -255,12 +244,12 @@ public class World extends JComponent
             int yAcust = Character.getY() % tileHeight;
     
             //runs through the coordinates of every on screen Tile
-            while(curTileY<Character.getY()+yShift + tileHeight)
+            while(curTileY+startBorderY<Character.getY()+yShift + tileHeight)
             {
-                g.drawImage(world.get(worldSeed.getTile(curTileX-xAcust,curTileY-yAcust)), curTileX-Character.getX()-xAcust + xShift, curTileY-Character.getY()-yAcust+yShift, null);
+                g.drawImage(world.get(worldSeed.getTile(curTileX-xAcust+startBorderX,curTileY-yAcust+startBorderY)), curTileX-Character.getX()-xAcust + xShift+startBorderX, curTileY-Character.getY()-yAcust+yShift+startBorderY, null);
 
                 curTileX += tileWidth;
-                if(curTileX>Character.getX()+xShift)
+                if(curTileX+startBorderX>Character.getX()+xShift)
                 {
                     curTileX = Character.getX() - xShift;
                     curTileY += tileHeight;
