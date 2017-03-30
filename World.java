@@ -162,7 +162,7 @@ public class World extends JComponent
 
                         if(battleEmulator.getState())
                         {
-                            battleEmulator.SelectorActivated(Character.getActiveProgrammer(),Character);   
+                            battleEmulator.SelectorActivated(Character.getActivePokemon(),Character);   
                         }
 
                     }
@@ -315,7 +315,7 @@ public class World extends JComponent
             if(Character.playersRemaining())
             {
                 frame.setSize(415, 438);
-                battleEmulator.drawGame(g,Character.getActiveProgrammer(),Character);
+                battleEmulator.drawGame(g,Character.getActivePokemon(),Character);
             }
             else
             {

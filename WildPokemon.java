@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum WildProgrammer
+public enum WildPokemon
 {
     Henry("Henry",100, 300, "HenryFront.png", "HenryBack.png" , Type.Python, 
     Move.NodeJs, Move.Nap, Move.Procrasitinate, Move.SingAlong ),
@@ -33,7 +33,7 @@ public enum WildProgrammer
     final Move M3;
     final Move M4;
     
-    WildProgrammer(String n, int bP, int a, String frontFN, String backFN, Type t,
+    WildPokemon(String n, int bP, int a, String frontFN, String backFN, Type t,
     Move m1, Move m2, Move m3, Move m4)
     {
         M1 = m1;

@@ -14,7 +14,7 @@ public class Player
     private SpriteRotation sprites;
     private Movement location;
     private Direction facing;
-    private ArrayList<Programmer> party;
+    private ArrayList<Pokemon> party;
     /**
      * Constructor for objects of class Player
      */
@@ -24,12 +24,12 @@ public class Player
         sprites = new SpriteRotation();
         location = new Movement(160,160,24,36,new Rectangle(0,0, 1000,970),s);
         facing = Direction.Up;
-        party = new ArrayList<Programmer>();
-        party.add(new Programmer(WildProgrammer.Max,3));
-        party.add(new Programmer(WildProgrammer.Fisher,1));
+        party = new ArrayList<Pokemon>();
+        party.add(new Pokemon(WildPokemon.Max,3));
+        party.add(new Pokemon(WildPokemon.Fisher,1));
     }
     
-    public Programmer getProGrammer(int i)
+    public Pokemon getProGrammer(int i)
     {
         return party.get(i);
     }
@@ -97,19 +97,19 @@ public class Player
     
     public void swapGrammer(int i)
     {
-        Programmer temp = party.get(i);
+        Pokemon temp = party.get(i);
         party.set(i,party.get(0));
         party.set(0,temp);
     }
     
-    public void catchProgrammer(Programmer p)
+    public void catchPokemon(Pokemon p)
     {
         party.add(p);
     }
 
     public boolean playersRemaining()
     {
-        for (Programmer p: party)
+        for (Pokemon p: party)
         {
             if(p.isAwake())
             {
@@ -119,9 +119,9 @@ public class Player
         return false;
     }
 
-    public Programmer getActiveProgrammer()
+    public Pokemon getActivePokemon()
     {
-        for (Programmer p: party)
+        for (Pokemon p: party)
         {
             if(p.isAwake())
             {

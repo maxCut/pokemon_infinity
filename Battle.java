@@ -11,7 +11,7 @@ public class Battle
     private int selectorBox;
     private int curentMenu;
     private boolean gameOn;
-    private Programmer computer;
+    private Pokemon computer;
 
     static BufferedImage fightScreen;
 
@@ -37,32 +37,32 @@ public class Battle
 
     public void casualEncounter()
     {
-        WildProgrammer madTemp = null;
+        WildPokemon madTemp = null;
         switch((int)(6*Math.random()))
         {
             case 0:
-            madTemp = WildProgrammer.Henry;
+            madTemp = WildPokemon.Henry;
             break;
             case 1:
-            madTemp = WildProgrammer.Mark;
+            madTemp = WildPokemon.Mark;
             break;
             case 2:
-            madTemp = WildProgrammer.Rakesh;
+            madTemp = WildPokemon.Rakesh;
             break;
             case 3:
-            madTemp = WildProgrammer.Max;
+            madTemp = WildPokemon.Max;
             break;
             case 4:
-            madTemp = WildProgrammer.Ricky;
+            madTemp = WildPokemon.Ricky;
             break;
             case 5:
-            madTemp = WildProgrammer.Fisher;
+            madTemp = WildPokemon.Fisher;
         }
 
         gameOn = true;
         if(computer==null)
         {
-            computer = new Programmer(madTemp,2);
+            computer = new Pokemon(madTemp,2);
         }
     }
 
@@ -91,7 +91,7 @@ public class Battle
         return selectorBox;
     }
 
-    public void SelectorActivated(Programmer playersFirst,Player player)
+    public void SelectorActivated(Pokemon playersFirst,Player player)
     {
         if(gameOn)
         {
@@ -133,7 +133,7 @@ public class Battle
             {
                 if(selectorBox==0)
                 {
-                    player.catchProgrammer(computer);
+                    player.catchPokemon(computer);
                     computer=null;
                     gameOn= false;
                     curentMenu = 0;
@@ -157,7 +157,7 @@ public class Battle
         }
     }
 
-    public void drawGame(Graphics g, Programmer p,Player cha)
+    public void drawGame(Graphics g, Pokemon p,Player cha)
     {
         fighterLoaderSetUp(g,p);
         loadHealthBar(g,p);
@@ -224,7 +224,7 @@ public class Battle
         g.drawString("Power Cord", 243, 365);
     }
 
-    public void moveMenu(Graphics g, Programmer defender)
+    public void moveMenu(Graphics g, Pokemon defender)
     {
         g.setColor(Color.BLACK);
         g.drawString(defender.getMoves().get(0).getName(), 44, 326);//top right
@@ -242,7 +242,7 @@ public class Battle
         g.drawString("Run", 243, 365);
     }
 
-    public void fighterLoaderSetUp(Graphics g, Programmer defender)
+    public void fighterLoaderSetUp(Graphics g, Pokemon defender)
     {
 
         g.drawImage(fightScreen, 0, 0, null);
@@ -259,7 +259,7 @@ public class Battle
 
     }
 
-    public void loadHealthBar(Graphics g, Programmer defender)
+    public void loadHealthBar(Graphics g, Pokemon defender)
     {
         if((int)(64*computer.getHealthPercent()) >= 32)
         {
@@ -294,7 +294,7 @@ public class Battle
 
     }
 
-    public void CPUTurn(Programmer defender)
+    public void CPUTurn(Pokemon defender)
     {
         computer.getMoves().get((int)(Math.random()*4)).use();
         computer.healSelf(computer.getMoves().get((int)(Math.random()*4)));

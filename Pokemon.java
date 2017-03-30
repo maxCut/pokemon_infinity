@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
-public class Programmer
+public class Pokemon
 {
     int brainPower;
     int ALERTNESS;
@@ -13,7 +13,7 @@ public class Programmer
     ArrayList<MovePP> moveset;
     final String NAME;
     boolean awake;
-    public Programmer(WildProgrammer wP, int l)
+    public Pokemon(WildPokemon wP, int l)
     {
         curentAlertness = wP.getAlertness();
         exp = 0;
