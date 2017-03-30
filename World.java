@@ -32,47 +32,27 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 public class World extends JComponent
 {
-    static World start = new World();
-    static Map<tileType, BufferedImage> world = new HashMap<tileType, BufferedImage>();
-    static BufferedImage tree;
-    static BufferedImage grass;
-    static BufferedImage tallGrass;
-    static int height =0;
-    static int width = 0;
-    static int count = 0;
+        
+
+    static World start = new World();   //this is the recursively defined object of the game itself. 
+    static Map<tileType, BufferedImage> world = new HashMap<tileType, BufferedImage>();//way of storing image mem adresses
+    static BufferedImage tree;//image
+    static BufferedImage grass;//image
+    static BufferedImage tallGrass;//image
     static JFrame frame = new JFrame();
-    static Player Character;
-    static Battle battleEmulator;
+    static Player Character;//the users player class
+    static Battle battleEmulator;//mode that allows user to battle other players
     static Seed worldSeed;
     public static void main(String[] args) throws IOException
     {
         worldSeed = new Seed();
-        runGameTextIntro();
+        runGameTextIntro(); // asks user if they are a boy or a girl and takes in the input
         battleEmulator = new Battle();
-        loadPictures();       
-                
-        
-        //TODO remove hash map and replace with procedural generation
+        loadPictures();// gets the pictures and stores them locally, almost at the point where pictures will be loaded into a jar       
 
-        createMap();
-        String the = "";
+        createMap(); //applies values of world seed to generate a map
 
-
-        //ArrayList<String> temp = new ArrayList<String>();
-        //the = the.replace("\n", "");
-
-        //         System.out.println(temp);
-        //         System.out.println(world.get(temp.get(0)));
-        //         for(String n: temp)
-        //         {
-        //             happy.add(world.get(n));
-        //         }
-        //System.out.println("Happy: " + happy);
-
-        //frame.setLayout(null);
-        //frame. setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //start.setBounds(0, 0, 400, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //jframe settings
         frame.add(start);
         frame.setVisible(true);
         frame.setSize(400, 400);
@@ -199,10 +179,6 @@ public class World extends JComponent
                     }
                 }
 
-                public void keyTyped(KeyEvent e)
-                {
-
-                }
             }); 
 
         while(true)
@@ -272,8 +248,6 @@ public class World extends JComponent
 
         if(!battleEmulator.getState())
         {
-            //System.out.println("Happy 2 " + happy);
-            //System.out.println(happy.size());
             int curTileX = Character.getX() - xShift -tileWidth;
             int curTileY = Character.getY() - yShift - tileHeight;
 
@@ -284,17 +258,6 @@ public class World extends JComponent
             while(curTileY<Character.getY()+yShift + tileHeight)
             {
                 g.drawImage(world.get(worldSeed.getTile(curTileX-xAcust,curTileY-yAcust)), curTileX-Character.getX()-xAcust + xShift, curTileY-Character.getY()-yAcust+yShift, null);
-/*
-                if(happy.get(i).equals("T"))
-                {
-                    Character.collisionBox(new Rectangle(width,height+5,40,25));
-                }
-
-                if(happy.get(i).equals("G"))
-                {
-                    Character.shakeyBox(new Rectangle(width,height+5,40,25));
-                }
-                    TODO replace this comented code with new collision and event boxes*/
 
                 curTileX += tileWidth;
                 if(curTileX>Character.getX()+xShift)
@@ -303,11 +266,8 @@ public class World extends JComponent
                     curTileY += tileHeight;
                 }
 
-                //System.out.println("Working? " + i);
             }
             g.drawImage(Character.getPic(),200,200,null);
-            //g.drawImage(world.get("G"), 0, 0, null);
-            //g.drawImage(world.get("g"), 0, 0, null);
         }
 
         if(battleEmulator.getState())
