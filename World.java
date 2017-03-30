@@ -149,7 +149,7 @@ public class World extends JComponent
                     if(key == KeyEvent.VK_B)
                     {
 
-                        if(battleEmulator.getState())
+                        if(battleEmulator.getState()&&battleEmulator.getCurrentMenu()!=4)
                         {
                             battleEmulator.deSelected();   
                         }

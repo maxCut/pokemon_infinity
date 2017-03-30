@@ -9,16 +9,20 @@ import java.awt.*;
 public class Battle
 {
     private int selectorBox;
-    private int curentMenu;
+    private int currentMenu;
     private boolean gameOn;
     private Pokemon computer;
 
     static BufferedImage fightScreen;
 
+    public int getCurrentMenu()
+    {
+        return currentMenu;
+    }
     public Battle()
     {
         gameOn = false;
-        curentMenu = 0;
+        currentMenu = 0;
         selectorBox = 0;
         try
         {
@@ -68,7 +72,7 @@ public class Battle
 
     public void updateCurentMenu(int i)
     {
-        curentMenu = i;
+        currentMenu = i;
     }
 
     public boolean getState()
@@ -78,7 +82,7 @@ public class Battle
 
     public void deSelected()
     {
-        curentMenu = 0;
+        currentMenu = 0;
     }
 
     public void setSelectorBox(int x)
@@ -95,29 +99,29 @@ public class Battle
     {
         if(gameOn)
         {
-            if(curentMenu==0)
+            if(currentMenu==0)
             {
                 if (selectorBox == 0)
                 {
-                    curentMenu = 1;
+                    currentMenu = 1;
                 }
                 else if(selectorBox == 1)
                 {
-                    curentMenu = 2;
+                    currentMenu = 2;
                 }
                 else if(selectorBox == 2)
                 {
-                    curentMenu = 3;
+                    currentMenu = 3;
                 }
                 else if(selectorBox == 3)
                 {
                     computer=null;
                     gameOn= false;
-                    curentMenu = 0;
+                    currentMenu = 0;
                     selectorBox = 0;
                 }
             }
-            else if(curentMenu == 1)
+            else if(currentMenu == 1)
             {
                 playersFirst.getMoves().get(selectorBox).use();
                 playersFirst.healSelf(playersFirst.getMoves().get(selectorBox));
@@ -127,32 +131,32 @@ public class Battle
                     computer = null;
                     gameOn=false;
                 }
-                curentMenu = 4;
+                currentMenu = 4;
             }
-            else if(curentMenu == 2)
+            else if(currentMenu == 2)
             {
                 if(selectorBox==0)
                 {
                     player.catchPokemon(computer);
                     computer=null;
                     gameOn= false;
-                    curentMenu = 0;
+                    currentMenu = 0;
                     selectorBox = 0;
                 }
             }
-            else if(curentMenu== 3)
+            else if(currentMenu== 3)
             {
                 if(player.getProGrammer(selectorBox).isAwake())
                 {
                     player.swapGrammer(selectorBox);
 
-                    curentMenu= 4;
+                    currentMenu= 4;
                 }
             }
-            else if (curentMenu == 4)
+            else if (currentMenu == 4)
             {
                 CPUTurn(playersFirst);
-                curentMenu= 0;
+                currentMenu= 0;
             }
         }
     }
@@ -162,19 +166,19 @@ public class Battle
         fighterLoaderSetUp(g,p);
         loadHealthBar(g,p);
         drawSelectorBox(g);
-        if(curentMenu == 0)
+        if(currentMenu == 0)
         {
             startMenu(g);
         }
-        else if(curentMenu == 1)
+        else if(currentMenu == 1)
         {
             moveMenu(g,p);
         }
-        else if(curentMenu == 2)
+        else if(currentMenu == 2)
         {
             itemMenu(g);
         }
-        else if(curentMenu == 3)
+        else if(currentMenu == 3)
         {
             switchMenu(g, cha);
         }
