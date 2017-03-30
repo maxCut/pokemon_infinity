@@ -232,8 +232,8 @@ public class World extends JComponent
         final int xShift = 200;//these shift the tiles relative to the player.
         final int yShift = 200;
 
-        final int startBorderX = -40; //the start border for the x axis of where to start drawing tiles
-        final int startBorderY = 0; //the start border for the x axis of where to start drawing tiles
+        final int startBorderX = tileWidth*(-40/tileWidth); //the start border for the x axis of where to start drawing tiles
+        final int startBorderY = tileHeight*(0/tileHeight); //the start border for the y axis of where to start drawing tiles     Keep these divisible by tile width and tile height.
 
         if(!battleEmulator.getState())
         {
