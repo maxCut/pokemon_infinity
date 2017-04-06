@@ -14,7 +14,7 @@ public class Movement
     private Rectangle border;
 //    private ArrayList<Rectangle> collisionBoxes = new ArrayList<Rectangle>();
 //    private ArrayList<Rectangle> shakeyPatches = new ArrayList<Rectangle>();
-    private final int MOVEDISTANCE = 3;
+    private final int MOVEDISTANCE = (int)(World.SCALE*3);
 
     public Seed worldSeed;
     /**
@@ -109,10 +109,10 @@ public class Movement
     {
         ArrayList<Rectangle> answer = new ArrayList<Rectangle>();
         //The following code is based on the painComponent in World.java
-        final int tileWidth = 40;
-        final int tileHeight = 40;
-        final int xShift = 200;
-        final int yShift = 200;
+        final int tileWidth = (int)(World.SCALE*40);
+        final int tileHeight = (int)(World.SCALE*40);
+        final int xShift = (int)(World.SCALE*200);
+        final int yShift = (int)(World.SCALE*200);
             int curTileX = player.x - xShift -tileWidth;
             int curTileY = player.y - yShift -tileHeight;
             int xAcust = player.x % tileWidth; 
@@ -136,10 +136,10 @@ public class Movement
     {
         ArrayList<Rectangle> answer = new ArrayList<Rectangle>();
         //The following code is based on the painComponent in World.java
-        final int tileWidth = 40;
-        final int tileHeight = 40;
-        final int xShift = 200;
-        final int yShift = 200;
+        final int tileWidth = (int)(World.SCALE*40);
+        final int tileHeight = (int)(World.SCALE*40);
+        final int xShift = (int)(World.SCALE*200);
+        final int yShift = (int)(World.SCALE*200);
             int curTileX = player.x - xShift -tileWidth;
             int curTileY = player.y - yShift -tileHeight;
             int xAcust = player.x % tileWidth; 

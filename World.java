@@ -22,8 +22,7 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 public class World extends JComponent
 {
-        
-
+    public static final double SCALE = 2.0;
     static World start = new World();   //this is the recursively defined object of the game itself. 
     static Map<tileType, BufferedImage> world = new HashMap<tileType, BufferedImage>();//way of storing image mem adresses
     static BufferedImage tree;//image
@@ -45,7 +44,7 @@ public class World extends JComponent
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //jframe settings
         frame.add(start);
         frame.setVisible(true);
-        frame.setSize(400, 400);
+        frame.setSize((int)(400*SCALE),(int)(400*SCALE));
 
         frame.addKeyListener(new KeyAdapter(){
                 public void keyPressed(KeyEvent e)
@@ -217,13 +216,13 @@ public class World extends JComponent
 
     public void paintComponent(Graphics g)
     {
-        final int tileWidth = 40;
-        final int tileHeight = 40;
-        final int xShift = 200;//these shift the tiles relative to the player.
-        final int yShift = 200;
+        final int tileWidth = (int)(40*SCALE);
+        final int tileHeight = (int)(40*SCALE);
+        final int xShift = (int)(200*SCALE);//these shift the tiles relative to the player.
+        final int yShift = (int)(200*SCALE);
 
-        final int startBorderX = tileWidth*(-40/tileWidth); //the start border for the x axis of where to start drawing tiles
-        final int startBorderY = tileHeight*(0/tileHeight); //the start border for the y axis of where to start drawing tiles     Keep these divisible by tile width and tile height.
+        final int startBorderX = (int)(SCALE*tileWidth*(-40/tileWidth)); //the start border for the x axis of where to start drawing tiles
+        final int startBorderY = (int)(tileHeight*(0/tileHeight)); //the start border for the y axis of where to start drawing tiles     Keep these divisible by tile width and tile height.
 
         if(!battleEmulator.getState())
         {
@@ -236,7 +235,7 @@ public class World extends JComponent
             //runs through the coordinates of every on screen Tile
             while(curTileY+startBorderY<Character.getY()+yShift + tileHeight)
             {
-                g.drawImage(world.get(worldSeed.getTile(curTileX-xAcust+startBorderX,curTileY-yAcust+startBorderY)), curTileX-Character.getX()-xAcust + xShift+startBorderX, curTileY-Character.getY()-yAcust+yShift+startBorderY, null);
+                g.drawImage(world.get(worldSeed.getTile(curTileX-xAcust+startBorderX,curTileY-yAcust+startBorderY)), curTileX-Character.getX()-xAcust + xShift+startBorderX, curTileY-Character.getY()-yAcust+yShift+startBorderY, (int)(40*SCALE),(int)(40*SCALE), null);
 
                 curTileX += tileWidth;
                 if(curTileX+startBorderX>Character.getX()+xShift)
@@ -246,7 +245,7 @@ public class World extends JComponent
                 }
 
             }
-            g.drawImage(Character.getPic(),200,200,null);
+            g.drawImage(Character.getPic(),(int)(200*SCALE),(int)(SCALE*200),(int)(30*SCALE),(int)(40*SCALE),null);
         }
 
         if(battleEmulator.getState())
@@ -263,7 +262,7 @@ public class World extends JComponent
         }
         else
         {
-            frame.setSize(400, 400);
+            frame.setSize((int)(400*SCALE),(int)(400*SCALE));
         }
     }
 }
