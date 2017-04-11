@@ -126,7 +126,7 @@ public class World extends JComponent
                             battleEmulator.casualEncounter();
                         }
                     }
-                    if(key == KeyEvent.VK_A)
+                    if(key == KeyEvent.VK_A || key == KeyEvent.VK_ENTER)
                     {
 
                         if(battleEmulator.getState())
@@ -135,7 +135,7 @@ public class World extends JComponent
                         }
 
                     }
-                    if(key == KeyEvent.VK_B)
+                    if(key == KeyEvent.VK_B || key==KeyEvent.VK_BACK_SPACE)
                     {
 
                         if(battleEmulator.getState()&&battleEmulator.getCurrentMenu()!=4) //if its not the opponents turn and you are in a battle it will derefrence the state
