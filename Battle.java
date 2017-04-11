@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -262,6 +261,20 @@ public class Battle
         g.drawRect(45, 73+10,64,6);//border of status bar
         g.drawString(defender.getName(), 254, 240);//displays the name
         g.drawRect(254, 240+10,64,6);
+    }
+
+    public void fighterLoaderLite(Graphics g,Pokemon defender)//draws everything but the fighters
+    {
+        g.drawImage(fightScreen, 0, 0, null);
+        g.setColor(Color.BLACK);
+        g.setFont(g.getFont().deriveFont(20f));
+
+        g.setColor(Color.BLACK);
+        g.drawString(computer.getName(), 45, 73);//displays the name
+        g.drawRect(45, 73+10,64,6);//border of status bar
+        g.drawString(defender.getName(), 254, 240);//displays the name
+        g.drawRect(254, 240+10,64,6);
+
 
     }
 
@@ -305,6 +318,11 @@ public class Battle
         computer.getMoves().get((int)(Math.random()*4)).use();
         computer.healSelf(computer.getMoves().get((int)(Math.random()*4)));
         defender.takeHit(computer.getDamageDone(computer.getMoves().get((int)(Math.random()*4))));
+    }
+
+    public Pokemon getComputer()
+    {
+        return computer;
     }
 
 }

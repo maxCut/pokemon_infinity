@@ -41,6 +41,7 @@ public class World extends JComponent
 
         createMap(); //applies values of world seed to generate a map
 
+        AnimationQueue.initialize();//inits the static animation queue
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //jframe settings
         frame.add(start);
         frame.setVisible(true);
@@ -213,6 +214,15 @@ public class World extends JComponent
         world.put(tileType.tallGrass, tallGrass);
         world.put(tileType.shortGrass, grass);
     }
+    public static Battle getBattleEmulator()
+    {
+        return battleEmulator;
+    }
+
+    public static Player getCharacter()
+    {
+        return Character;
+    }
 
     public void paintComponent(Graphics g)
     {
@@ -221,8 +231,8 @@ public class World extends JComponent
         final int xShift = (int)(200*SCALE);//these shift the tiles relative to the player.
         final int yShift = (int)(200*SCALE);
 
-        final int startBorderX = (int)(SCALE*tileWidth*(-40/tileWidth)); //the start border for the x axis of where to start drawing tiles
-        final int startBorderY = (int)(tileHeight*(0/tileHeight)); //the start border for the y axis of where to start drawing tiles     Keep these divisible by tile width and tile height.
+        final int startBorderX  = (int)(tileWidth*(-1)); //the start border for the x axis of where to start drawing tiles
+        final int startBorderY = (int)(tileHeight*(0)); //the start border for the y axis of where to start drawing tiles     Keep these divisible by tile width and tile height.
 
         if(!battleEmulator.getState())
         {
@@ -264,5 +274,8 @@ public class World extends JComponent
         {
             frame.setSize((int)(400*SCALE),(int)(400*SCALE));
         }
+
+        AnimationQueue.playAllInQueue(g);
+
     }
 }
