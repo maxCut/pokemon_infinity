@@ -22,7 +22,7 @@ public class Player
     {
         gen = g;
         sprites = new SpriteRotation();
-        location = new Movement(160,160,(int)(24*World.SCALE),(int)(36*World.SCALE),new Rectangle(0,0, 1000,970),s);
+        location = new Movement(260,260,(int)(16*World.SCALE),(int)(36*World.SCALE),new Rectangle(0,0, 1000,970),s);
         facing = Direction.Up;
         party = new ArrayList<Pokemon>();
         party.add(new Pokemon(WildPokemon.Max,3));

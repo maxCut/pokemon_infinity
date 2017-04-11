@@ -135,7 +135,7 @@ public class Battle
             }
             else if(currentMenu == 2)
             {
-                if(selectorBox==0)
+                if(selectorBox==0)//catch them
                 {
                     player.catchPokemon(computer);
                     computer=null;
@@ -143,13 +143,17 @@ public class Battle
                     currentMenu = 0;
                     selectorBox = 0;
                 }
+                else if (selectorBox==2)//heal
+                {
+                    playersFirst.fullHeal();
+                    currentMenu=4;
+                }
             }
             else if(currentMenu== 3)
             {
                 if(player.getProGrammer(selectorBox).isAwake())
                 {
                     player.swapGrammer(selectorBox);
-
                     currentMenu= 4;
                 }
             }
@@ -223,9 +227,7 @@ public class Battle
     {
         g.setColor(Color.BLACK);
         g.drawString("Idea", 44, 326);
-        g.drawString("White Board", 44, 365);
         g.drawString("Caffeine", 243, 326);
-        g.drawString("Power Cord", 243, 365);
     }
 
     public void moveMenu(Graphics g, Pokemon defender)

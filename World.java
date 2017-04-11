@@ -22,7 +22,7 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 public class World extends JComponent
 {
-    public static final double SCALE = 2.0;
+    public static final double SCALE = 2.5;
     static World start = new World();   //this is the recursively defined object of the game itself. 
     static Map<tileType, BufferedImage> world = new HashMap<tileType, BufferedImage>();//way of storing image mem adresses
     static BufferedImage tree;//image
@@ -245,7 +245,7 @@ public class World extends JComponent
                 }
 
             }
-            g.drawImage(Character.getPic(),(int)(200*SCALE),(int)(SCALE*200),(int)(30*SCALE),(int)(40*SCALE),null);
+            g.drawImage(Character.getPic(),(int)(200*SCALE),(int)(SCALE*200),(int)(24*SCALE),(int)(36*SCALE),null);
         }
 
         if(battleEmulator.getState())
