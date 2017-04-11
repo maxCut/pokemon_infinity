@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.params=
-comment0.target=SpriteRotation()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ SpriteRotation\r\n
-comment1.params=
-comment1.target=void\ Move()
-comment2.params=d\ g
-comment2.target=java.awt.image.BufferedImage\ getSprite(Direction,\ Gender)
-numComments=3

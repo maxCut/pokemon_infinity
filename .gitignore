@@ -1,0 +1,8 @@
+*.class
+*.ctxt
+*.bluej
+*.iml
+*.log
+out/
+.metadata/
+.idea/
