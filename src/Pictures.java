@@ -10,7 +10,7 @@ public final class Pictures
         InputStream input = Pictures.class.getResourceAsStream(path);
         if (input == null)
         {
-            input = Pictures.class.getResourceAsStream("/" + path);
+            input = Pictures.class.getResourceAsStream("img/" + path);
         }
         return input;
     }
