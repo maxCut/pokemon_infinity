@@ -189,7 +189,7 @@ public class Battle
         }
         else
         {
-            g.drawString("Opponent is making their move", 100, 366);
+            g.drawString("Opponent is making their move", (int)(100*World.SCALE),(int)(366*World.SCALE));
         }
 
     }
@@ -197,10 +197,10 @@ public class Battle
     public void switchMenu(Graphics g, Player p)
     {
         g.setColor(Color.BLACK);
-        g.drawString(p.topRight(), 44, 326);
-        g.drawString(p.bottomRight(), 44, 365);
-        g.drawString(p.topLeft(), 243, 326);
-        g.drawString(p.bottomLeft(), 243, 365);
+        g.drawString(p.topRight(), (int)(44*World.SCALE), (int)(326*World.SCALE));//top right
+        g.drawString(p.bottomRight(), (int)(44*World.SCALE), (int)(365*World.SCALE));//bottom right
+        g.drawString(p.topLeft(), (int)(243*World.SCALE), (int)(326*World.SCALE));//top left
+        g.drawString(p.bottomLeft(), (int)(243*World.SCALE), (int)(365*World.SCALE));//bottom left
     }
 
     public void drawSelectorBox(Graphics g)
@@ -208,74 +208,74 @@ public class Battle
         g.setColor(Color.YELLOW);
         if(selectorBox==0)
         {
-            g.fillRect(44, 308, 50,30);
+            g.fillRect((int)(44*World.SCALE),(int)(308*World.SCALE),(int)(50*World.SCALE),(int)(30*World.SCALE));
         }
         else if(selectorBox==1)
         {
-            g.fillRect(44, 347, 50,30);
+            g.fillRect((int)(44*World.SCALE),(int)(347*World.SCALE),(int)(50*World.SCALE),(int)(30*World.SCALE));
         }
         else if(selectorBox==2)
         {
-            g.fillRect(243, 308, 50,30);
+            g.fillRect((int)(243*World.SCALE),(int)(308*World.SCALE),(int)(50*World.SCALE),(int)(30*World.SCALE));
         }
         else
         {
-            g.fillRect(243, 347, 50,30);
+            g.fillRect((int)(243*World.SCALE),(int)(347*World.SCALE),(int)(50*World.SCALE),(int)(30*World.SCALE));
         }
     }
 
     public void itemMenu(Graphics g)
     {
         g.setColor(Color.BLACK);
-        g.drawString("Idea", 44, 326);
-        g.drawString("Caffeine", 243, 326);
+        g.drawString("Capture_Ball", (int)(44*World.SCALE), (int)(326*World.SCALE));
+        g.drawString("FullHealPotion", (int)(243*World.SCALE), (int)(326*World.SCALE));
     }
 
     public void moveMenu(Graphics g, Pokemon defender)
     {
         g.setColor(Color.BLACK);
-        g.drawString(defender.getMoves().get(0).getName(), 44, 326);//top right
-        g.drawString(defender.getMoves().get(1).getName(), 44, 365); //bottom right
-        g.drawString(defender.getMoves().get(2).getName(), 243, 326);//top left
-        g.drawString(defender.getMoves().get(3).getName(), 243, 365);//bottom left
+        g.drawString(defender.getMoves().get(0).getName(), (int)(44*World.SCALE), (int)(326*World.SCALE));//top right
+        g.drawString(defender.getMoves().get(1).getName(), (int)(44*World.SCALE), (int)(365*World.SCALE));//bottom right
+        g.drawString(defender.getMoves().get(2).getName(), (int)(243*World.SCALE), (int)(326*World.SCALE));//top left
+        g.drawString(defender.getMoves().get(3).getName(), (int)(243*World.SCALE), (int)(365*World.SCALE));//bottom left
     }
 
     public void startMenu(Graphics g)
     {
         g.setColor(Color.BLACK);
-        g.drawString("Move", 44, 326);
-        g.drawString("Bag", 44, 365); 
-        g.drawString("Switch" , 243, 326);
-        g.drawString("Run", 243, 365);
+        g.drawString("Move", (int)(44*World.SCALE), (int)(326*World.SCALE));
+        g.drawString("Bag", (int)(44*World.SCALE), (int)(365*World.SCALE));
+        g.drawString("Switch", (int)(243*World.SCALE), (int)(326*World.SCALE));
+        g.drawString("Run", (int)(243*World.SCALE), (int)(365*World.SCALE));
     }
 
     public void fighterLoaderSetUp(Graphics g, Pokemon defender)
     {
 
-        g.drawImage(fightScreen, 0, 0, null);
-        g.drawImage(defender.getBack() , 54, 153, null);
-        g.drawImage(computer.getFront() , 245, 36, null);
+        g.drawImage(fightScreen, 0, 0,(int)(400*World.SCALE),(int)(400*World.SCALE),null);
+        g.drawImage(defender.getBack() , (int)(54*World.SCALE), (int)(153*World.SCALE),(int)(100*World.SCALE),(int)(133*World.SCALE), null);
+        g.drawImage(computer.getFront() , (int)(245*World.SCALE), (int)(36*World.SCALE),(int)(100*World.SCALE),(int)(133*World.SCALE), null);
         g.setColor(Color.BLACK);
         g.setFont(g.getFont().deriveFont(20f));
 
         g.setColor(Color.BLACK);
-        g.drawString(computer.getName(), 45, 73);//displays the name
-        g.drawRect(45, 73+10,64,6);//border of status bar
-        g.drawString(defender.getName(), 254, 240);//displays the name
-        g.drawRect(254, 240+10,64,6);
+        g.drawString(computer.getName(),(int)(45*World.SCALE), (int)(73*World.SCALE));//displays the name
+        g.drawRect((int)(45*World.SCALE),(int)(83*World.SCALE),(int)(64*World.SCALE),(int)(6*World.SCALE));//border of status bar
+        g.drawString(defender.getName(), (int)(254*World.SCALE), (int)(240*World.SCALE));//displays the name
+        g.drawRect((int)(254*World.SCALE),(int)(250*World.SCALE),(int)(64*World.SCALE),(int)(6*World.SCALE));//border of status bar
     }
 
     public void fighterLoaderLite(Graphics g,Pokemon defender)//draws everything but the fighters
     {
-        g.drawImage(fightScreen, 0, 0, null);
+        g.drawImage(fightScreen, 0, 0,null);
         g.setColor(Color.BLACK);
         g.setFont(g.getFont().deriveFont(20f));
 
         g.setColor(Color.BLACK);
-        g.drawString(computer.getName(), 45, 73);//displays the name
-        g.drawRect(45, 73+10,64,6);//border of status bar
-        g.drawString(defender.getName(), 254, 240);//displays the name
-        g.drawRect(254, 240+10,64,6);
+        g.drawString(computer.getName(),(int)(45*World.SCALE), (int)(73*World.SCALE));//displays the name
+        g.drawRect((int)(45*World.SCALE),(int)(83*World.SCALE),(int)(64*World.SCALE),(int)(6*World.SCALE));//border of status bar
+        g.drawString(defender.getName(), (int)(254*World.SCALE), (int)(240*World.SCALE));//displays the name
+        g.drawRect((int)(254*World.SCALE),(int)(250*World.SCALE),(int)(64*World.SCALE),(int)(6*World.SCALE));//border of status bar
 
 
     }
@@ -296,7 +296,7 @@ public class Battle
         }
 
         //g.setColor(Color.ORANGE);
-        g.fillRect(46,74 + 10, (int)(64*computer.getHealthPercent()) ,4);
+        g.fillRect((int)(46*World.SCALE),(int)(84*World.SCALE),(int)(64*computer.getHealthPercent()*World.SCALE) ,(int)(4*World.SCALE));
 
         if((int)(64*defender.getHealthPercent()) >= 32)
         {
@@ -310,7 +310,7 @@ public class Battle
         {
             g.setColor(Color.RED);
         }
-        g.fillRect(255, 241 + 10, (int)(64*defender.getHealthPercent()), 4);
+        g.fillRect((int)(255*World.SCALE),(int)(251*World.SCALE), (int)(64*defender.getHealthPercent()*World.SCALE), (int)(4*World.SCALE));
         //Control which statments to draw with if statements
 
     }

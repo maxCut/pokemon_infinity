@@ -262,7 +262,7 @@ public class World extends JComponent
         {
             if(Character.playersRemaining())
             {
-                frame.setSize(415, 438);
+                frame.setSize((int)(400*SCALE),(int)(400*SCALE));
                 battleEmulator.drawGame(g,Character.getActivePokemon(),Character);
             }
             else
