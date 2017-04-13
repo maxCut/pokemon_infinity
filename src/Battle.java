@@ -41,7 +41,7 @@ public class Battle
     public void casualEncounter()
     {
         WildPokemon madTemp = null;
-        switch((int)(6*Math.random()))
+        switch((int)(7*Math.random()))
         {
             case 0:
             madTemp = WildPokemon.Henry;
@@ -60,6 +60,8 @@ public class Battle
             break;
             case 5:
             madTemp = WildPokemon.Fisher;
+            case 6:
+            madTemp = WildPokemon.QuirkTwins;
         }
 
         gameOn = true;

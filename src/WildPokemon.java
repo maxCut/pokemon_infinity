@@ -20,7 +20,9 @@ public enum WildPokemon
     Ricky("Ricky", 66, 301, "RickyFront.png", "RickyBack.png", Type.Python,
     Move.StealChair, Move.Procrasitinate, Move.Bite, Move.SingAlong),
     Fisher("Fisher", 90, 290, "FisherFront.png", "FisherBack.png", Type.C,
-    Move.Nap, Move.Bite, Move.SingAlong, Move.nullPointerException);
+    Move.Nap, Move.Bite, Move.SingAlong, Move.nullPointerException),
+    QuirkTwins("Quirk Twins",85,300,"QuirkFront.png","QuirkBack.png",Type.Java,
+    Move.Nap,Move.Row,Move.TwinHit,Move.JavaDocs);
     
     final String NAME;
     final int BRAINPOWER;

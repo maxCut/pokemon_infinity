@@ -18,7 +18,10 @@ public enum Move
     Bite(10,.8,0,"Bite"), 
     StealChair(20,.5,0,"Steal Chair"),
     MakeWaffles(5,0,100,"Make Waffles"),
-    NodeJs(1,5,200,"Node JS");
+    NodeJs(9,.5,40,"Node JS"),
+    Row(5,.5,0,"Row"),
+    TwinHit(9,.6,0, "Twin Hit");
+    
     
     private String name;
     private int pp;
