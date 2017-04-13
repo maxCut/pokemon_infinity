@@ -13,9 +13,6 @@ VERSION or DATE: 2.1
 run World.class in java, 
 Type either boy/girl in command prompt.
 
-1.0 AUTHORS: Max Mesirow, Maya Marks
-2.0 AUTHORS: Max Mesirow
-
 ## USER INSTRUCTIONS:
 * to move around use arrow keys
 * Trees are impassible objects that the user will colide with.
@@ -28,5 +25,4 @@ Type either boy/girl in command prompt.
 
 ## Known Bugs:
 * 1 in 30 chance of spawning inside a tree, restricting all movement.
-* walking left may create white space on the first column
 * Gotta ask again on prompt
