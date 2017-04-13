@@ -19,6 +19,7 @@ public final class AnimationQueue
         {
             animationQueue.add(new Tuple(clip,new Integer(i)));
         }
+        World.frame.repaint(); //play animation on add
     }
 
     public static boolean containsAnimations()

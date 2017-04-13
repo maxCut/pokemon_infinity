@@ -128,11 +128,6 @@ public class Battle
                 playersFirst.getMoves().get(selectorBox).use();
                 playersFirst.healSelf(playersFirst.getMoves().get(selectorBox));
                 computer.takeHit(playersFirst.getDamageDone(playersFirst.getMoves().get(selectorBox)));
-                if(!computer.isAwake())
-                {
-                    computer = null;
-                    gameOn=false;
-                }
                 currentMenu = 4;
             }
             else if(currentMenu == 2)
@@ -161,8 +156,16 @@ public class Battle
             }
             else if (currentMenu == 4)
             {
+                if(!computer.isAwake())
+                {
+                    computer = null;
+                    gameOn=false;
+                }
+                else
+                {
                 CPUTurn(playersFirst);
                 currentMenu= 0;
+                }
             }
         }
     }
@@ -190,7 +193,15 @@ public class Battle
         }
         else
         {
-            g.drawString("Opponent is making their move", (int)(100*World.SCALE),(int)(366*World.SCALE));
+            g.setColor(Color.BLACK);
+            if(computer.isAwake())
+            {
+                g.drawString("Opponent is making their move", (int)(100*World.SCALE),(int)(366*World.SCALE));
+            }
+            else
+            {
+                g.drawString("you killed them :(", (int)(100*World.SCALE),(int)(366*World.SCALE));
+            }
         }
 
     }
@@ -318,6 +329,7 @@ public class Battle
 
     public void CPUTurn(Pokemon defender)
     {
+        AnimationQueue.addAnimation(Animations.computerAttacksPlayer);
         computer.getMoves().get((int)(Math.random()*4)).use();
         computer.healSelf(computer.getMoves().get((int)(Math.random()*4)));
         defender.takeHit(computer.getDamageDone(computer.getMoves().get((int)(Math.random()*4))));

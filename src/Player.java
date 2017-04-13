@@ -128,6 +128,8 @@ public class Player
                 return p;
             }
         }
+        System.out.println("you lost :(");
+        System.exit(0);
         return null;
     }
 
