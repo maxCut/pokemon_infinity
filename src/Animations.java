@@ -5,7 +5,6 @@ public enum Animations implements Animateable
     playerAttacksComputer{
         public void drawAnimation(Graphics g,int frame)
         {
-            System.out.println("player Attacking");
             Battle battleMachine = World.getBattleEmulator();
             Player cha = World.getCharacter();
             BufferedImage playerPokemonBack = cha.getActivePokemon().getBack();
