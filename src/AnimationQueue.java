@@ -2,20 +2,23 @@ import java.util.*;
 import java.awt.Graphics;
 public final class AnimationQueue
 {
-    private static Queue<Animateable> animationQueue;
+    private static Queue<Tuple<Animateable,Integer>> animationQueue;
     private AnimationQueue()
     {
-        animationQueue = new  LinkedList<Animateable>();
+        animationQueue = new  LinkedList<Tuple<Animateable,Integer>>();
     }
 
     public static void initialize()
     {
-        animationQueue = new  LinkedList<Animateable>();
+        animationQueue = new  LinkedList<Tuple<Animateable,Integer>>();
     }
 
     public static void addAnimation(Animateable clip)
     {
-        animationQueue.add(clip);
+        for(int i = 0; i<clip.getFrames();i++)
+        {
+            animationQueue.add(new Tuple(clip,new Integer(i)));
+        }
     }
 
     public static boolean containsAnimations()
@@ -24,13 +27,10 @@ public final class AnimationQueue
         //return animationQueue.peek()!=null;
     }
 
-    public static void playAllInQueue(Graphics g)
+    public static void playClip(Graphics g)
     {
-        while(containsAnimations())
-        {
-            Animateable clip = animationQueue.poll();
-            clip.drawAnimation(g);
-        }
+            Tuple<Animateable,Integer> clip = animationQueue.poll();
+            clip.x.drawAnimation(g,clip.y);
     }
 
 }

@@ -124,6 +124,7 @@ public class Battle
             }
             else if(currentMenu == 1)
             {
+                AnimationQueue.addAnimation(Animations.playerAttacksComputer);
                 playersFirst.getMoves().get(selectorBox).use();
                 playersFirst.healSelf(playersFirst.getMoves().get(selectorBox));
                 computer.takeHit(playersFirst.getDamageDone(playersFirst.getMoves().get(selectorBox)));

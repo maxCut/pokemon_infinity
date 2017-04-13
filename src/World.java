@@ -226,6 +226,12 @@ public class World extends JComponent
 
     public void paintComponent(Graphics g)
     {
+        if(AnimationQueue.containsAnimations())
+        {
+            AnimationQueue.playClip(g);
+            return;
+        }
+
         final int tileWidth = (int)(40*SCALE);
         final int tileHeight = (int)(40*SCALE);
         final int xShift = (int)(200*SCALE);//these shift the tiles relative to the player.
@@ -275,7 +281,6 @@ public class World extends JComponent
             frame.setSize((int)(400*SCALE),(int)(400*SCALE));
         }
 
-        AnimationQueue.playAllInQueue(g);
 
     }
 }
