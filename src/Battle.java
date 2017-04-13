@@ -268,7 +268,7 @@ public class Battle
 
     public void fighterLoaderLite(Graphics g,Pokemon defender)//draws everything but the fighters
     {
-        g.drawImage(fightScreen, 0, 0,null);
+        g.drawImage(fightScreen, 0, 0,(int)(400*World.SCALE),(int)(400*World.SCALE),null);
         g.setColor(Color.BLACK);
         g.setFont(g.getFont().deriveFont(20f));
 

@@ -14,8 +14,8 @@ public enum Animations implements Animateable
                 
                 battleMachine.fighterLoaderLite(g,cha.getActivePokemon());
 
-                g.drawImage(playerPokemonBack,54+frame,153,null);//moving player pokemon
-                g.drawImage(computerPokemonFront,245,36,null);
+                g.drawImage(playerPokemonBack,(int)((54+frame)*World.SCALE),(int)(World.SCALE*153),(int)(100*World.SCALE),(int)(133*World.SCALE),null);//moving player pokemon
+                g.drawImage(computerPokemonFront,(int)((245)*World.SCALE),(int)(36*World.SCALE),(int)(100*World.SCALE),(int)(133*World.SCALE),null);
 
                 battleMachine.loadHealthBar(g,cha.getActivePokemon());
                 battleMachine.drawSelectorBox(g);
