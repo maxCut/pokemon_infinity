@@ -248,6 +248,11 @@ public class World extends JComponent
             int xAcust = Character.getX() % tileWidth; //This adjusts the place the tiles are drawn for when the character does not walk a full tile
             int yAcust = Character.getY() % tileHeight;
     
+            System.out.println("x " + (curTileX-xAcust+startBorderX)/(int)(40*SCALE) 
+                    +" y " + (curTileY-yAcust+startBorderY)/(int)(40*SCALE)
+                    + " random gened " + worldSeed.testRandom((curTileX-xAcust+startBorderX),(curTileY-yAcust+startBorderY)));
+            
+                    
             //runs through the coordinates of every on screen Tile
             while(curTileY+startBorderY<Character.getY()+yShift + tileHeight)
             {

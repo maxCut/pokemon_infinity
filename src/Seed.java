@@ -7,27 +7,59 @@ public class Seed
     final int seedShift = 5000;
     final int bigPrimeOne = 4759;
     final int bigPrimeTwo = 3719;
-    final int townSizeX = 30;
-    final int townSizeY = 30;
+    final int townSizeX = 10;
+    final int townSizeY = 10;
     int seedGen;
+    int xShift = 1000001;
+    int yShift = 1000001;
     public Seed()
     {
         seedGen = (int)(Math.random()*seedRange)+seedShift;
         System.out.println(seedGen);
     }
     
+    public int testRandom(int x, int y)//purely for tests
+    {
+        
+        x+=xShift;
+        y+=yShift;
+
+        x/=(int)(40*World.SCALE);//pixels
+        y/=(int)(40*World.SCALE);//pixels
+
+        int xBlock = x/townSizeX;//make positive
+        int yBlock = y/townSizeY;//find a better way to do this
+
+        int randomTowns = ((seedGen*bigPrimeOne*xBlock-1)%bigPrimeTwo+bigPrimeTwo)%bigPrimeTwo 
+            + ((seedGen*bigPrimeTwo*yBlock-1)%bigPrimeOne +bigPrimeOne)%bigPrimeOne
+            + ((seedGen*bigPrimeOne*xBlock-1)%bigPrimeTwo+bigPrimeTwo)*((seedGen*bigPrimeTwo*yBlock-1)%bigPrimeOne +bigPrimeOne);
+
+        return randomTowns%13;
+    }
     public tileType getTile(int x, int y)
     {
 
-        x/=40;//pixels
-        y/=40;//pixels
+        x+=xShift;//make positive
+        y+=yShift;//TODO find a better way to do this
 
+        x/=(int)(40*World.SCALE);//pixels
+        y/=(int)(40*World.SCALE);//pixels
+        
+        int randomGened = ((seedGen*bigPrimeOne*x-1)%bigPrimeTwo+bigPrimeTwo)%bigPrimeTwo 
+            + ((seedGen*bigPrimeTwo*y-1)%bigPrimeOne +bigPrimeOne)%bigPrimeOne
+            + ((seedGen*bigPrimeOne*x-1)%bigPrimeTwo+bigPrimeTwo)*((seedGen*bigPrimeTwo*y-1)%bigPrimeOne +bigPrimeOne);
 
-        int randomGened = (bigPrimeOne*x-1)%seedGen + (bigPrimeTwo*y-1)%seedGen + 7*(bigPrimeTwo*y-23)%(seedGen+3*(x/5)+7*(y/5));
-        int randomTowns = (bigPrimeOne*(x/townSizeX)-1)%seedGen+ (bigPrimeTwo*(y/townSizeY)-1)%seedGen + 7*(bigPrimeTwo*(y/townSizeY)-23)%(seedGen+3*((x/townSizeX)/5)+7*((y/townSizeY)/5));
+        
+        int xBlock = x/townSizeX;
+        int yBlock = y/townSizeY;
+        int randomTowns = ((seedGen*bigPrimeOne*xBlock-1)%bigPrimeTwo+bigPrimeTwo)%bigPrimeTwo 
+            + ((seedGen*bigPrimeTwo*yBlock-1)%bigPrimeOne +bigPrimeOne)%bigPrimeOne
+            + ((seedGen*bigPrimeOne*xBlock-1)%bigPrimeTwo+bigPrimeTwo)*((seedGen*bigPrimeTwo*yBlock-1)%bigPrimeOne +bigPrimeOne);
+
 
         //calculate towns
-        if(randomTowns%15==0) //the block is in a town
+        //System.out.println(((randomTowns%15)+15)%15);
+        if(randomTowns%13==1) //the block is in a town
         {
             return tileType.shortGrass;//right now it deforests but will place town here
         }
