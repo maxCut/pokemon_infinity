@@ -1,3 +1,3 @@
 public enum tileType{
-tallGrass,shortGrass,tree,path
+tallGrass,shortGrass,tree,viridianCity
 }

@@ -7,11 +7,11 @@ public class Seed
     final int seedShift = 5000;
     final int bigPrimeOne = 4759;
     final int bigPrimeTwo = 3719;
-    final int townSizeX = 10;
-    final int townSizeY = 10;
+    final static int townSizeX = 9;
+    final static int townSizeY = 10;
     int seedGen;
-    int xShift = 1000001;
-    int yShift = 1000001;
+    final static int xShift = 1000001;
+    final static int yShift = 1000001;
     public Seed()
     {
         seedGen = (int)(Math.random()*seedRange)+seedShift;
@@ -61,7 +61,7 @@ public class Seed
         //System.out.println(((randomTowns%15)+15)%15);
         if(randomTowns%13==1) //the block is in a town
         {
-            return tileType.shortGrass;//right now it deforests but will place town here
+            return tileType.viridianCity;//place a town here
         }
 
         //sudo random aspect

@@ -28,6 +28,7 @@ public class World extends JComponent
     static BufferedImage tree;//image
     static BufferedImage grass;//image
     static BufferedImage tallGrass;//image
+    static BufferedImage viridianCity;
     static JFrame frame = new JFrame();
     static Player Character;//the users player class
     static Battle battleEmulator;//mode that allows user to battle other players
@@ -201,6 +202,7 @@ public class World extends JComponent
             tree = ImageIO.read(Pictures.load("tree.png"));
             grass = ImageIO.read(Pictures.load("grass.png"));
             tallGrass = ImageIO.read(Pictures.load("tallgrass.png"));
+            viridianCity = ImageIO.read(Pictures.load("ViridianCity.png"));//this is the full city
         }
         catch (Exception e)
         {
@@ -213,6 +215,7 @@ public class World extends JComponent
         world.put(tileType.tree, tree);
         world.put(tileType.tallGrass, tallGrass);
         world.put(tileType.shortGrass, grass);
+        world.put(tileType.viridianCity,viridianCity);//this is the full city
     }
     public static Battle getBattleEmulator()
     {
@@ -226,6 +229,7 @@ public class World extends JComponent
 
     public void paintComponent(Graphics g)
     {
+
         if(AnimationQueue.containsAnimations())
         {
             AnimationQueue.playClip(g);
@@ -256,7 +260,34 @@ public class World extends JComponent
             //runs through the coordinates of every on screen Tile
             while(curTileY+startBorderY<Character.getY()+yShift + tileHeight)
             {
-                g.drawImage(world.get(worldSeed.getTile(curTileX-xAcust+startBorderX,curTileY-yAcust+startBorderY)), curTileX-Character.getX()-xAcust + xShift+startBorderX, curTileY-Character.getY()-yAcust+yShift+startBorderY, (int)(40*SCALE),(int)(40*SCALE), null);
+                tileType tileTypeToBeDrawn = worldSeed.getTile(curTileX-xAcust+startBorderX,curTileY-yAcust+startBorderY); //the tile type of current Tile
+                if(tileTypeToBeDrawn==tileType.tallGrass||tileTypeToBeDrawn==tileType.shortGrass||tileTypeToBeDrawn==tileType.tree)
+                {
+                g.drawImage(world.get(tileTypeToBeDrawn), 
+                        curTileX-Character.getX()-xAcust + xShift+startBorderX, 
+                        curTileY-Character.getY()-yAcust+yShift+startBorderY, 
+                        (int)(40*SCALE),(int)(40*SCALE), null);
+                }
+                else//its a city
+                {
+                int xstart = 40*((((curTileX-xAcust+startBorderX +Seed.xShift)
+                                /(int)(40*SCALE))%Seed.townSizeX+Seed.townSizeX)%Seed.townSizeX);
+                int ystart = 40*((((curTileY-yAcust+startBorderY +Seed.yShift)
+                                /(int)(40*SCALE))%Seed.townSizeY+Seed.townSizeY)%Seed.townSizeY);
+
+                System.out.println(xstart);
+
+                g.drawImage(world.get(tileTypeToBeDrawn), 
+                        curTileX-Character.getX()-xAcust + xShift+startBorderX, //dx1
+                        curTileY-Character.getY()-yAcust+yShift+startBorderY,  //dy1
+                        curTileX-Character.getX()-xAcust + xShift+startBorderX + (int)(40*SCALE), //dx2
+                        curTileY-Character.getY()-yAcust+yShift+startBorderY + (int)(40*SCALE), //dy2
+                        xstart, //sx1
+                        ystart, //sy1
+                        xstart+40,//sx2
+                        ystart+40,//sy2
+                        null);
+                }
 
                 curTileX += tileWidth;
                 if(curTileX+startBorderX>Character.getX()+xShift)
