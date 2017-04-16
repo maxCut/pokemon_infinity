@@ -52,7 +52,7 @@ public class World extends JComponent
         frame.addKeyListener(input);
 
         long lastLoopTime = System.nanoTime();
-        final int TARGET_FPS = 60;
+        final int TARGET_FPS = 30;
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
         long lastFpsTime = 0;
         long gameTime = 0;
@@ -81,7 +81,7 @@ public class World extends JComponent
         }
     }
 
-    public static void runGameTextIntro()//run in the beggining of the game
+    private static void runGameTextIntro()//run in the beggining of the game
     {
 
         System.out.println("Are you a boy or a girl?");
@@ -102,7 +102,7 @@ public class World extends JComponent
         } 
     }
     
-    public static void loadPictures()
+    private static void loadPictures()
     {
         try
         {
@@ -117,13 +117,15 @@ public class World extends JComponent
         }
 
     }
-    public static void createMap()
+
+    private static void createMap()
     {
         world.put(tileType.tree, tree);
         world.put(tileType.tallGrass, tallGrass);
         world.put(tileType.shortGrass, grass);
         world.put(tileType.viridianCity,viridianCity);//this is the full city
     }
+
     public static Battle getBattleEmulator()
     {
         return battleEmulator;
@@ -134,7 +136,7 @@ public class World extends JComponent
         return Character;
     }
 
-    public static void update() {
+    private static void update() {
         if(input.isKeyPressed(KeyEvent.VK_RIGHT)) {
             if(battleEmulator.getState())
             {
