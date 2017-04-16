@@ -275,8 +275,6 @@ public class World extends JComponent
                 int ystart = 40*((((curTileY-yAcust+startBorderY +Seed.yShift)
                                 /(int)(40*SCALE))%Seed.townSizeY+Seed.townSizeY)%Seed.townSizeY);
 
-                System.out.println(xstart);
-
                 g.drawImage(world.get(tileTypeToBeDrawn), 
                         curTileX-Character.getX()-xAcust + xShift+startBorderX, //dx1
                         curTileY-Character.getY()-yAcust+yShift+startBorderY,  //dy1

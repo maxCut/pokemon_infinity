@@ -150,7 +150,7 @@ public class Movement
                     answer.add(new Rectangle(curTileX-xAcust-(int)(5*World.SCALE),curTileY-yAcust+(int)(9*World.SCALE),tileWidth,25));
                 else if(worldSeed.getTile(curTileX-xAcust,curTileY-yAcust)==tileType.viridianCity)
                 {
-                    
+                    answer.addAll(cityCollisionCalculator.getCityCollisions(curTileX-xAcust,curTileY-yAcust,worldSeed.getTile(curTileX-xAcust,curTileY-yAcust)));
                 }
 
                 curTileX += tileWidth;

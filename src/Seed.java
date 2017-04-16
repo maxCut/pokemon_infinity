@@ -59,7 +59,7 @@ public class Seed
 
         //calculate towns
         //System.out.println(((randomTowns%15)+15)%15);
-        if(randomTowns%13==1) //the block is in a town
+        if(randomTowns%13==1||(xBlock==1111&&yBlock==1000)) //the block is in a town
         {
             return tileType.viridianCity;//place a town here
         }
