@@ -201,7 +201,7 @@ public class Battle
             }
             else
             {
-                g.drawString("you killed them :(", (int)(100*World.SCALE),(int)(366*World.SCALE));
+                g.drawString("you won the battle!!!", (int)(100*World.SCALE),(int)(366*World.SCALE));
             }
         }
 
