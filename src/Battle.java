@@ -219,6 +219,7 @@ public class Battle
     public void drawSelectorBox(Graphics g)
     {
         g.setColor(Color.YELLOW);
+        if (currentMenu > 3) g.setColor(new Color(255, 255, 255, 0));
         if(selectorBox==0)
         {
             g.fillRect((int)(44*World.SCALE),(int)(308*World.SCALE),(int)(50*World.SCALE),(int)(30*World.SCALE));
