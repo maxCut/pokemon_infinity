@@ -147,7 +147,7 @@ public class Movement
             while(curTileY<player.y+ yShift + tileHeight)
             {
                 if(worldSeed.getTile(curTileX-xAcust,curTileY-yAcust)==tileType.tree)
-                    answer.add(new Rectangle(curTileX-xAcust-(int)(5*World.SCALE),curTileY-yAcust+(int)(9*World.SCALE),tileWidth,25));
+                    answer.add(new Rectangle(curTileX-xAcust-(int)(5*World.SCALE),curTileY-yAcust+(int)(9*World.SCALE),tileWidth,(int)(10*World.SCALE)));
                 else if(worldSeed.getTile(curTileX-xAcust,curTileY-yAcust)==tileType.viridianCity)
                 {
                     
