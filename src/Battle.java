@@ -197,7 +197,7 @@ public class Battle
             g.setColor(Color.BLACK);
             if(computer.isAwake())
             {
-                g.drawString("Opponent is making their move", (int)(100*World.SCALE),(int)(366*World.SCALE));
+                g.drawString("Opponent is making their move [enter to continue]", (int)(100*World.SCALE),(int)(366*World.SCALE));
             }
             else
             {
