@@ -58,8 +58,39 @@ public class Seed
 
 
         //calculate towns
-        //System.out.println(((randomTowns%15)+15)%15);
-        if(randomTowns%13==1||(xBlock==1111&&yBlock==1000)) //the block is in a town
+
+        //adjacent towns?
+        //above and to the left
+        int xABlock = xBlock-1;
+        int yABlock = yBlock-1;
+        int adjTowns = ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)%bigPrimeTwo 
+            + ((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne)%bigPrimeOne
+            + ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)*((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne);
+
+        boolean adjacentTowns = adjTowns%13==1||(xABlock==1111&&yABlock==1000);
+        //above directly
+        xABlock++;
+        adjTowns = ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)%bigPrimeTwo 
+            + ((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne)%bigPrimeOne
+            + ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)*((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne);
+        adjacentTowns=adjacentTowns||(adjTowns%13==1||(xABlock==1111&&yABlock==1000));
+
+
+        //above to the right 
+        xABlock++;
+        adjTowns = ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)%bigPrimeTwo 
+            + ((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne)%bigPrimeOne
+            + ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)*((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne);
+        adjacentTowns=adjacentTowns||(adjTowns%13==1||(xABlock==1111&&yABlock==1000));
+
+        //to the right 
+        yABlock++;
+        adjTowns = ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)%bigPrimeTwo 
+            + ((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne)%bigPrimeOne
+            + ((seedGen*bigPrimeOne*xABlock-1)%bigPrimeTwo+bigPrimeTwo)*((seedGen*bigPrimeTwo*yABlock-1)%bigPrimeOne +bigPrimeOne);
+        adjacentTowns=adjacentTowns||(adjTowns%13==1||(xABlock==1111&&yABlock==1000));
+
+        if((randomTowns%13==1 && !adjacentTowns)||(xBlock==1111&&yBlock==1000)) //the block is in a town
         {
             return tileType.viridianCity;//place a town here
         }
