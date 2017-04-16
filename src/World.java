@@ -33,144 +33,51 @@ public class World extends JComponent
     static Player Character;//the users player class
     static Battle battleEmulator;//mode that allows user to battle other players
     static Seed worldSeed;
+    static InputManager input;
     public static void main(String[] args) throws IOException
     {
         worldSeed = new Seed();
+        input = new InputManager();
         runGameTextIntro(); // asks user if they are a boy or a girl and takes in the input
         battleEmulator = new Battle();
         loadPictures();// gets the pictures and stores them locally, almost at the point where pictures will be loaded into a jar       
 
         createMap(); //applies values of world seed to generate a map
 
-        AnimationQueue.initialize();//inits the static animation queue
+        AnimationQueue.initialize(); //inits the static animation queue
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //jframe settings
         frame.add(start);
         frame.setVisible(true);
         frame.setSize((int)(400*SCALE),(int)(400*SCALE));
+        frame.addKeyListener(input);
 
-        frame.addKeyListener(new KeyAdapter(){
-                public void keyPressed(KeyEvent e)
-                {
-                    Integer key = e.getKeyCode();
-                    if(key == KeyEvent.VK_RIGHT)
-                    {
-                        if(battleEmulator.getState())
-                        {
-                            if(battleEmulator.getSelectorBox()<2)
-                            {
-                                battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()+2);
-                            }
-                        }
-                        else
-                        {
-                            Character.move(Direction.Right);
-                        }
-
-                        if(Character.isEncounter())
-                        {
-                            battleEmulator.casualEncounter();
-                        }
-                    }
-                    if(key == KeyEvent.VK_LEFT)
-                    {
-                        if(battleEmulator.getState())
-                        {
-                            if(battleEmulator.getSelectorBox()>1)
-                            {
-                                battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()-2);
-                            }
-                        }
-                        else
-                        {
-                            Character.move(Direction.Left);
-                        }
-
-                        if(Character.isEncounter())
-                        {
-                            battleEmulator.casualEncounter();
-                        }
-                    }
-                    if(key == KeyEvent.VK_UP)
-                    {
-                        if(battleEmulator.getState())
-                        {
-                            if(battleEmulator.getSelectorBox()%2!=0)
-                            {
-                                battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()-1);
-                            }
-                        }
-                        else
-                        {
-                            Character.move(Direction.Up);
-                        }
-
-                        if(Character.isEncounter())
-                        {
-                            battleEmulator.casualEncounter();
-                        }
-                    }
-                    if(key == KeyEvent.VK_DOWN)
-                    {
-                        if(battleEmulator.getState())
-                        {
-                            if(battleEmulator.getSelectorBox()%2==0)
-                            {
-                                battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()+1);
-                            }
-                        }
-                        else
-                        {
-                            Character.move(Direction.Down);
-                        }
-
-                        if(Character.isEncounter())
-                        {
-                            battleEmulator.casualEncounter();
-                        }
-                    }
-                    if(key == KeyEvent.VK_A || key == KeyEvent.VK_ENTER)
-                    {
-
-                        if(battleEmulator.getState())
-                        {
-                            battleEmulator.SelectorActivated(Character.getActivePokemon(),Character);   
-                        }
-
-                    }
-                    if(key == KeyEvent.VK_B || key==KeyEvent.VK_BACK_SPACE)
-                    {
-
-                        if(battleEmulator.getState()&&battleEmulator.getCurrentMenu()!=4) //if its not the opponents turn and you are in a battle it will derefrence the state
-                        {
-                            battleEmulator.deSelected();   
-                        }
-
-                    }
-
-                }
-
-                public void keyReleased(KeyEvent e)
-                {
-                    Integer key = e.getKeyCode();
-                    if(key == KeyEvent.VK_RIGHT){}//right now these do nothing but have potential for key released events in future
-                    if(key == KeyEvent.VK_LEFT){}
-                    if(key == KeyEvent.VK_UP){}
-                    if(key == KeyEvent.VK_DOWN){}
-                }
-
-            }); 
+        long lastLoopTime = System.nanoTime();
+        final int TARGET_FPS = 60;
+        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+        long lastFpsTime = 0;
+        long gameTime = 0;
 
         while(true)
         {
+            long now = System.nanoTime();
+            long updateLength = now - lastLoopTime;
+            lastLoopTime = now;
+            double delta = updateLength / ((double)OPTIMAL_TIME);
+
+            lastFpsTime += updateLength;
+            if(lastFpsTime >= 1000000000){
+                lastFpsTime = 0;
+            }
+            update();
+            frame.repaint();
             try
             {
-                Thread.sleep(10);//gives time aspect so that it doesnt repaint every second
+                gameTime = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000;
+
+                Thread.sleep(gameTime);//gives time aspect so that it doesnt repaint every second
             } 
             catch(Exception e)
-            {
-
-            }
-            frame.repaint();
+            {}
         }
     }
 
@@ -227,6 +134,100 @@ public class World extends JComponent
         return Character;
     }
 
+    public static void update() {
+        if(input.isKeyPressed(KeyEvent.VK_RIGHT)) {
+            if(battleEmulator.getState())
+            {
+                if(battleEmulator.getSelectorBox()<2)
+                {
+                    battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()+2);
+                }
+            }
+            else
+            {
+                Character.move(Direction.Right);
+            }
+
+            if(Character.isEncounter())
+            {
+                battleEmulator.casualEncounter();
+            }
+        }
+        if(input.isKeyPressed(KeyEvent.VK_LEFT)) {
+            if(battleEmulator.getState())
+            {
+                if(battleEmulator.getSelectorBox()>1)
+                {
+                    battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()-2);
+                }
+            }
+            else
+            {
+                Character.move(Direction.Left);
+            }
+
+            if(Character.isEncounter())
+            {
+                battleEmulator.casualEncounter();
+            }
+        }
+        if(input.isKeyPressed(KeyEvent.VK_UP)) {
+            if(battleEmulator.getState())
+            {
+                if(battleEmulator.getSelectorBox()%2!=0)
+                {
+                    battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()-1);
+                }
+            }
+            else
+            {
+                Character.move(Direction.Up);
+            }
+
+            if(Character.isEncounter())
+            {
+                battleEmulator.casualEncounter();
+            }
+        }
+        if(input.isKeyPressed(KeyEvent.VK_DOWN))
+        {
+            if(battleEmulator.getState())
+            {
+                if(battleEmulator.getSelectorBox()%2==0)
+                {
+                    battleEmulator.setSelectorBox(battleEmulator.getSelectorBox()+1);
+                }
+            }
+            else
+            {
+                Character.move(Direction.Down);
+            }
+
+            if(Character.isEncounter())
+            {
+                battleEmulator.casualEncounter();
+            }
+        }
+        if(input.isKeyPressed(KeyEvent.VK_A) || input.isKeyPressed(KeyEvent.VK_ENTER))
+        {
+
+            if(battleEmulator.getState())
+            {
+                battleEmulator.SelectorActivated(Character.getActivePokemon(),Character);
+            }
+
+        }
+        if(input.isKeyPressed(KeyEvent.VK_B) || input.isKeyPressed(KeyEvent.VK_BACK_SPACE))
+        {
+
+            if(battleEmulator.getState()&&battleEmulator.getCurrentMenu()!=4) //if its not the opponents turn and you are in a battle it will derefrence the state
+            {
+                battleEmulator.deSelected();
+            }
+
+        }
+
+    }
     public void paintComponent(Graphics g)
     {
 
