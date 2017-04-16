@@ -114,10 +114,9 @@ public class Battle
                 {
                     currentMenu = 3;
                 }
-                else if(selectorBox == 3)
-                {
-                    computer=null;
-                    gameOn= false;
+                else if(selectorBox == 3) {
+                    computer = null;
+                    gameOn = false;
                     currentMenu = 0;
                     selectorBox = 0;
                 }
@@ -168,6 +167,7 @@ public class Battle
                 currentMenu= 0;
                 }
             }
+            selectorBox = 0;
         }
     }
 
