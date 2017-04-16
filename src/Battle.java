@@ -148,11 +148,12 @@ public class Battle
             }
             else if(currentMenu== 3)
             {
-                if(player.getProGrammer(selectorBox).isAwake())
-                {
-                    player.swapGrammer(selectorBox);
-                    currentMenu= 4;
-                }
+                try {
+                    if (player.getProGrammer(selectorBox).isAwake()) {
+                        player.swapGrammer(selectorBox);
+                        currentMenu = 4;
+                    }
+                } catch (Exception e) { /* do nothing */ }
             }
             else if (currentMenu == 4)
             {
