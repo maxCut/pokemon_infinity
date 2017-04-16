@@ -3,6 +3,7 @@
 *.bluej
 *.iml
 *.log
+*.swp
 out/
 .metadata/
 .idea/
