@@ -16,14 +16,21 @@ public class cityCollisionCalculator
 
     public static ArrayList<Rectangle> viridianCity(int tileX, int tileY)
     {
-        int relativeX = (tileX+Seed.xShift)%Seed.townSizeX;
-        int relativeY = (tileY+Seed.yShift)%Seed.townSizeY;
+        tileX/=(int)(40*World.SCALE);
+        tileY/=(int)(40*World.SCALE);
+        int relativeX = ((tileX+Seed.xShift-1)%Seed.townSizeX+Seed.townSizeX)%Seed.townSizeX;
+        int relativeY = ((tileY+Seed.yShift-1)%Seed.townSizeY+Seed.townSizeY)%Seed.townSizeY;
 
         ArrayList<Rectangle> ret = new ArrayList<Rectangle>();
 
-        if(relativeX==0 && relativeY==5)//hard code all colisions
+        if(relativeX==0 && relativeY==5)//hard code all colisions //the sign
         {
-            ret.add(new Rectangle(tileX,tileY+(int)(14*World.SCALE),(int)(16*World.SCALE),(int)(14*World.SCALE)));
+            ret.add(new Rectangle(tileX*(int)(40*World.SCALE),tileY*(int)(40*World.SCALE)-(int)(22*World.SCALE),(int)(10*World.SCALE),(int)(1*World.SCALE)));
+            return ret;
+        }
+        else if(relativeX==1 && relativeY==1)//the top left house
+        {
+            ret.add(new Rectangle(tileX*(int)(40*World.SCALE) + (int)(20*World.SCALE),tileY*(int)(40*World.SCALE)+(int)(22*World.SCALE),(int)(79*World.SCALE),(int)(39*World.SCALE)));
             return ret;
         }
         return ret;
